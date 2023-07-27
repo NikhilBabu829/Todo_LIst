@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital@1&family=Macondo&display=swap" rel="stylesheet">
+    <link rel="icon" href="./list.svg">
+</head>
+<body>
+    <nav class="navbar">
+        <h2>Hello there, Zoro!</h2>
+        <div class="projectsSection">
+            <button class = "inboxButton">Inbox</button>
+            <button class="newProject">+ Create A Project </button>
+            <div class="formToCreateNewProject">
+                <form action="" class="newProjectForm">
+                    <input type="text" class="projectName" name="project" required placeholder="Project Name">
+                    <button class="create">Create</button>
+                    <button class="cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="rightSide">
+        <h1 class="title">To Do-List</h1>
+        <div class="makingTodo">
+            <button class="newTask">New Task</button>
+            <div class="interface">
+                <form action="" class = "taskForm">
+                    <input type="text" placeholder="Task" name="task" class="task" required>
+                    <input type="date" name="date" id="dateInput" class="date">
+                    <select name="priority" class="prioritySelect">
+                        <option value="!!1">!!1(Priority1)</option>
+                        <option value="!!2">!!2(Priority2)</option>
+                        <option value="!!3">!!3(Priority3)</option>
+                        <option value="!!4">!!4(Priority4)</option>
+                    </select>
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
