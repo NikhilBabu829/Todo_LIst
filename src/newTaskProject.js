@@ -1,10 +1,8 @@
-import {selected} from './stayingInAProject.js';
 const interfaceUI = document.querySelector('.interface')
 const makingTodo = document.querySelector('.makingTodo');
 const taskForm = document.querySelector('.taskForm');
 const UI = document.querySelector('.interface')
 const formToCreateNewProject = document.querySelector('.formToCreateNewProject');
-import {storeTaskToProject} from  './storage.js'; // the localStorage js file
 
 
 
@@ -73,7 +71,6 @@ const makeNewTaskUI = (task, date, priority)=>{
         newDiv.style.borderTop = "4px solid"
         newDiv.style.borderTopColor = "#59CE8F"; 
     }
-    storeTaskToProject(task, date, priority, selected);
     newDiv.appendChild(taskPara);
     newDiv.appendChild(datePara);
     makingTodo.append(newDiv);
