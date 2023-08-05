@@ -1,18 +1,15 @@
+import {storingTasksInLocalStorage, storingProjectsInLocalStorage} from './storage'
+import {selected} from './index'
 const interfaceUI = document.querySelector('.interface')
 const makingTodo = document.querySelector('.makingTodo');
 const taskForm = document.querySelector('.taskForm');
 const UI = document.querySelector('.interface')
 const formToCreateNewProject = document.querySelector('.formToCreateNewProject');
 
-
-
 // DOES the below function toggles the new task form
 const showTheNewTaskBar = ()=>{
     interfaceUI.style.display = "block";
 }
-
-
-
 
 // DOES creates new div for project
 /*
@@ -34,11 +31,9 @@ const newProject = (projectName)=>{
 
     new_Project.append(leftPart);
     new_Project.append(rightpart);
+    storingProjectsInLocalStorage(projectName)
     return new_Project;
 }
-
-
-
 
 // DOES create new task div
 /*
@@ -71,12 +66,11 @@ const makeNewTaskUI = (task, date, priority)=>{
         newDiv.style.borderTop = "4px solid"
         newDiv.style.borderTopColor = "#59CE8F"; 
     }
+    storingTasksInLocalStorage(task.value, date.value, selected)
     newDiv.appendChild(taskPara);
     newDiv.appendChild(datePara);
     makingTodo.append(newDiv);
 }
-
-
 
 // DOES calls the UI function and makes the task div with data
 /*
