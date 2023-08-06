@@ -5,6 +5,7 @@ const makingTodo = document.querySelector('.makingTodo');
 const taskForm = document.querySelector('.taskForm');
 const UI = document.querySelector('.interface')
 const formToCreateNewProject = document.querySelector('.formToCreateNewProject');
+const projectSection = document.querySelector('.projectsSection'); 
 
 // DOES the below function toggles the new task form
 const showTheNewTaskBar = ()=>{
@@ -33,6 +34,26 @@ const newProject = (projectName)=>{
     new_Project.append(rightpart);
     storingProjectsInLocalStorage(projectName)
     return new_Project;
+}
+
+const newProjectUI = (project_name)=>{
+
+    formToCreateNewProject.style.display = "none";
+    const new_Project = document.createElement('button');
+    new_Project.classList.add('new_Project');
+
+    const leftPart = document.createElement('div');
+    leftPart.classList.add('leftPart');
+    leftPart.innerText = project_name;
+
+    const rightpart = document.createElement('div');
+    rightpart.innerText = 'X'
+    rightpart.classList.add('rightPart');
+
+    new_Project.append(leftPart);
+    new_Project.append(rightpart);
+    projectSection.appendChild(new_Project);
+
 }
 
 // DOES create new task div
@@ -72,6 +93,37 @@ const makeNewTaskUI = (task, date, priority)=>{
     makingTodo.append(newDiv);
 }
 
+const makeNewTaskUIWithoutAddingData = (task, date, priority)=>{
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('newDiv');
+
+    const taskPara = document.createElement('p');
+    taskPara.innerText = task;
+
+    const datePara = document.createElement('p');
+    datePara.innerText = date;
+
+    if(priority == '!!1'){
+        newDiv.style.borderTop = "4px solid"
+        newDiv.style.borderTopColor = "#CF455C";
+    }
+    else if(priority == '!!2'){
+        newDiv.style.borderTop = "4px solid"
+        newDiv.style.borderTopColor = "#FF8A5C";
+    }
+    else if(priority == '!!3'){
+        newDiv.style.borderTop = "4px solid"
+        newDiv.style.borderTopColor = "#FFDD67";
+    }
+    else{
+        newDiv.style.borderTop = "4px solid"
+        newDiv.style.borderTopColor = "#59CE8F"; 
+    }
+    newDiv.appendChild(taskPara);
+    newDiv.appendChild(datePara);
+    makingTodo.append(newDiv);
+}
+
 // DOES calls the UI function and makes the task div with data
 /*
 the below is the event where the data about the task date and the prioriy are entered by the user
@@ -90,4 +142,4 @@ taskForm.addEventListener('submit',(e)=>{
     }   
 })
 
-export {showTheNewTaskBar, newProject, makeNewTaskUI}
+export {showTheNewTaskBar, newProject, makeNewTaskUI, newProjectUI, makeNewTaskUIWithoutAddingData}

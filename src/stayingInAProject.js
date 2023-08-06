@@ -3,6 +3,15 @@ import {selected} from './index.js';
 
 const inboxButton = document.querySelector('.inboxButton');
 
+const body = document.querySelector('body');
+
+body.onload = defaultProjectSelector()
+
+function defaultProjectSelector(){
+    inboxButton.style.backgroundColor = "#181818";
+}
+
+
 inboxButton.addEventListener('click',()=>{
     selected.selectedIs = inboxButton.innerText.toLowerCase();
     if(selected.selectedIs == inboxButton.innerText.toLowerCase()){

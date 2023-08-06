@@ -1,6 +1,7 @@
 import './sassFiles/style.scss';
 import {showTheNewTaskBar, newProject} from './newTaskProject.js'; 
 import './stayingInAProject';
+import {retreivingDataFromLocalStorage} from './storage.js';
 import {newProjectListener, inboxClicked} from './stayingInAProject'
 
 const new_Project = document.querySelector('.newProject'); // btn to create a new project
@@ -9,6 +10,10 @@ const newProjectForm = document.querySelector('.newProjectForm'); // the form it
 const formToCreateNewProject = document.querySelector('.formToCreateNewProject'); //div containing the form
 
 const newTask = document.querySelector('.newTask');
+
+const body = document.querySelector('body');
+
+body.onload = retreivingDataFromLocalStorage();
 
 var selected = {
     selectedIs : "inbox"
@@ -33,6 +38,16 @@ newProjectForm.addEventListener('submit',(e)=>{
         element.addEventListener('click',()=>{
             element.parentElement.remove()
         })
+    })
+})
+
+const new_project = document.querySelectorAll('.new_Project');
+newProjectListener(new_project)
+
+const deleteProject = document.querySelectorAll('.rightPart');
+deleteProject.forEach((element)=>{
+    element.addEventListener('click',()=>{
+        element.parentElement.remove()
     })
 })
 
