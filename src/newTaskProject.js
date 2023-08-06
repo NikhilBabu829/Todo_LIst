@@ -1,3 +1,5 @@
+// TODO make tasks edits
+
 import {storingTasksInLocalStorage, storingProjectsInLocalStorage} from './storage'
 import {selected} from './index'
 const interfaceUI = document.querySelector('.interface')
@@ -87,7 +89,7 @@ const makeNewTaskUI = (task, date, priority)=>{
         newDiv.style.borderTop = "4px solid"
         newDiv.style.borderTopColor = "#59CE8F"; 
     }
-    storingTasksInLocalStorage(task.value, date.value, selected)
+    storingTasksInLocalStorage(task.value, date.value, priority.value, selected)
     newDiv.appendChild(taskPara);
     newDiv.appendChild(datePara);
     makingTodo.append(newDiv);

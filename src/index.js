@@ -51,6 +51,12 @@ deleteProject.forEach((element)=>{
     })
 })
 
+const cancel = document.querySelector('.cancel');
+cancel.addEventListener('click',(e)=>{
+    e.preventDefault();
+    formToCreateNewProject.style.display = 'none';
+})
+
 // DOES event to show or hide the new task form
 newTask.addEventListener('click', ()=>{
     showTheNewTaskBar();

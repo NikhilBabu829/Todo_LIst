@@ -1,3 +1,4 @@
+// TODO Delete project with the delete button along with the data
 import {newProjectUI, makeNewTaskUIWithoutAddingData} from './newTaskProject';
 
 //Does a sample template for local storage
@@ -7,12 +8,13 @@ const template = {
             project : '',
             tasks : [],
             date : [],
+            priority : [],
         },
     ]
 }
 
 // does function that stores tasks, dates in their respective project
-function storingTasksInLocalStorage(taks_name, date, selected){
+function storingTasksInLocalStorage(taks_name, date, priority,selected){
     if(localStorage.getItem("data")){
         const existingData =  JSON.parse(localStorage.getItem("data"));
         for(let i=0; i<existingData.project.length; i++){
@@ -20,6 +22,7 @@ function storingTasksInLocalStorage(taks_name, date, selected){
                 existingData.project[i].project = selected.selectedIs;
                 existingData.project[i].tasks.push(taks_name);
                 existingData.project[i].date.push(date);
+                existingData.project[i].priority.push(priority);
                 localStorage.setItem("data", JSON.stringify(existingData));
             }
         }
@@ -29,6 +32,7 @@ function storingTasksInLocalStorage(taks_name, date, selected){
         sampleTemplate.project[0].project = selected.selectedIs;
         sampleTemplate.project[0].tasks.push(taks_name);
         sampleTemplate.project[0].date.push(date);
+        sampleTemplate.project[0].priority.push(priority);
         localStorage.setItem("data", JSON.stringify(sampleTemplate))
     }
 }
@@ -41,15 +45,22 @@ function storingProjectsInLocalStorage(project_name){
                 project : project_name,
                 tasks : [],
                 date : [],
+                priority : [],
             },
         ]
+    }
+    const templateForNewprojectWithIndex = {
+        project : project_name,
+        tasks : [],
+        date : [],
+        priority : [],
     }
     if(localStorage.getItem("data")==null){
         localStorage.setItem("data", JSON.stringify(templateForNewproject))
     }
     else{
         const dataInLocalStorage = JSON.parse(localStorage.getItem("data"))
-        dataInLocalStorage.project[dataInLocalStorage.project.length] = templateForNewproject
+        dataInLocalStorage.project[dataInLocalStorage.project.length] = templateForNewprojectWithIndex
         localStorage.setItem('data', JSON.stringify(dataInLocalStorage));
     }
 }
@@ -60,14 +71,14 @@ function retreivingDataFromLocalStorage(){
         for(let i=0;i<retrievedDataInLocalStorage.project.length;i++){
             if(retrievedDataInLocalStorage.project[i].project == "inbox"){
                 for(let j=0;j<retrievedDataInLocalStorage.project[i].tasks.length || j<retrievedDataInLocalStorage.project[i].date.length;j++){
-                    makeNewTaskUIWithoutAddingData(retrievedDataInLocalStorage.project[i].tasks[j],retrievedDataInLocalStorage.project[i].date[j])
+                    makeNewTaskUIWithoutAddingData(retrievedDataInLocalStorage.project[i].tasks[j],retrievedDataInLocalStorage.project[i].date[j], retrievedDataInLocalStorage.project[i].priority[j])
                 }
                 continue
             }
             else{
                 newProjectUI(retrievedDataInLocalStorage.project[i].project)
                 for(let k=0;k<retrievedDataInLocalStorage.project[i].tasks.length || k<retrievedDataInLocalStorage.project[i].date.length;k++){
-                    makeNewTaskUIWithoutAddingData(retrievedDataInLocalStorage.project[i].tasks[k],retrievedDataInLocalStorage.project[i].date[k])
+                    makeNewTaskUIWithoutAddingData(retrievedDataInLocalStorage.project[i].tasks[k], retrievedDataInLocalStorage.project[i].date[k], retrievedDataInLocalStorage.project[i].priority[k])
                 }
             }
         }
