@@ -1,17 +1,16 @@
-// TODO make tasks edits
-
-import {storingTasksInLocalStorage, storingProjectsInLocalStorage} from './storage'
-import {selected} from './index'
-const interfaceUI = document.querySelector('.interface')
+// TODO make the todo's event
+import { storingTasksInLocalStorage, storingProjectsInLocalStorage } from './storage';
+import {selected} from './index';
+const interfaceUI = document.querySelector('.interface');
 const makingTodo = document.querySelector('.makingTodo');
 const taskForm = document.querySelector('.taskForm');
-const UI = document.querySelector('.interface')
+const UI = document.querySelector('.interface');
 const formToCreateNewProject = document.querySelector('.formToCreateNewProject');
 const projectSection = document.querySelector('.projectsSection'); 
 
 // DOES the below function toggles the new task form
 const showTheNewTaskBar = ()=>{
-    interfaceUI.style.display = "block";
+    interfaceUI.style.display = 'block';
 }
 
 // DOES creates new div for project
@@ -69,9 +68,11 @@ const makeNewTaskUI = (task, date, priority)=>{
 
     const taskPara = document.createElement('p');
     taskPara.innerText = task.value;
+    taskPara.classList.add('taskPara');
 
     const datePara = document.createElement('p');
     datePara.innerText = date.value;
+    datePara.classList.add('datePara');
 
     if(priority.value == '!!1'){
         newDiv.style.borderTop = "4px solid"
@@ -101,9 +102,11 @@ const makeNewTaskUIWithoutAddingData = (task, date, priority)=>{
 
     const taskPara = document.createElement('p');
     taskPara.innerText = task;
+    taskPara.classList.add('taskPara');
 
     const datePara = document.createElement('p');
     datePara.innerText = date;
+    datePara.classList.add('datePara');
 
     if(priority == '!!1'){
         newDiv.style.borderTop = "4px solid"

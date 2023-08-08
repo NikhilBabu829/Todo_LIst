@@ -1,4 +1,3 @@
-// TODO Delete project with the delete button along with the data
 import {newProjectUI, makeNewTaskUIWithoutAddingData} from './newTaskProject';
 
 //Does a sample template for local storage
@@ -85,4 +84,18 @@ function retreivingDataFromLocalStorage(){
     }
 }
 
-export {storingTasksInLocalStorage, storingProjectsInLocalStorage, retreivingDataFromLocalStorage}
+function deleteAproject(projectName){
+    const getDataFromLocalStorage = JSON.parse(localStorage.getItem("data"));
+    for(let i=0;i<getDataFromLocalStorage.project.length;i++){
+        if(getDataFromLocalStorage.project[i].project == projectName.childNodes[0].innerText){
+            delete getDataFromLocalStorage.project.splice(i,1);
+        }
+    }
+    localStorage.setItem("data", JSON.stringify(getDataFromLocalStorage));
+}
+
+function removeTaskFromStorage(ele){
+    console.log(ele)
+}
+
+export {storingTasksInLocalStorage, storingProjectsInLocalStorage, retreivingDataFromLocalStorage, deleteAproject, removeTaskFromStorage}

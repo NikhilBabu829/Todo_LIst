@@ -1,7 +1,8 @@
 import './sassFiles/style.scss';
 import {showTheNewTaskBar, newProject} from './newTaskProject.js'; 
 import './stayingInAProject';
-import {retreivingDataFromLocalStorage} from './storage.js';
+import './newTaskProject'
+import {retreivingDataFromLocalStorage, deleteAproject, removeTaskFromStorage} from './storage.js';
 import {newProjectListener, inboxClicked} from './stayingInAProject'
 
 const new_Project = document.querySelector('.newProject'); // btn to create a new project
@@ -36,6 +37,7 @@ newProjectForm.addEventListener('submit',(e)=>{
     const deleteProject = document.querySelectorAll('.rightPart');
     deleteProject.forEach((element)=>{
         element.addEventListener('click',()=>{
+            deleteAproject(element.parentElement)
             element.parentElement.remove()
         })
     })
@@ -47,6 +49,7 @@ newProjectListener(new_project)
 const deleteProject = document.querySelectorAll('.rightPart');
 deleteProject.forEach((element)=>{
     element.addEventListener('click',()=>{
+        deleteAproject(element.parentElement)
         element.parentElement.remove()
     })
 })
@@ -61,5 +64,12 @@ cancel.addEventListener('click',(e)=>{
 newTask.addEventListener('click', ()=>{
     showTheNewTaskBar();
 });
+
+const allTasks = document.querySelectorAll(".newDiv");
+allTasks.forEach((task)=>{
+    task.addEventListener('click',()=>{
+        removeTaskFromStorage(task);
+    });
+})
 
 export {selected}
