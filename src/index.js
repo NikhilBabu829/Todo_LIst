@@ -65,11 +65,21 @@ newTask.addEventListener('click', ()=>{
     showTheNewTaskBar();
 });
 
-const allTasks = document.querySelectorAll(".newDiv");
-allTasks.forEach((task)=>{
-    task.addEventListener('click',()=>{
-        removeTaskFromStorage(task);
+function completed(){
+    const completedTasks = document.querySelectorAll('.completedBtn');
+    completedTasks.forEach((element)=>{
+        element.addEventListener('click',()=>{
+            console.log("click");
+            removeTaskFromStorage(element.parentElement);
+        })
     });
-})
+}
 
-export {selected}
+const completedTasks = document.querySelectorAll('.completedBtn');
+completedTasks.forEach((element)=>{
+    element.addEventListener('click',()=>{
+        removeTaskFromStorage(element.parentElement);
+    })
+});
+
+export {selected, completed}

@@ -148,7 +148,6 @@ body{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     button{
         color: $dark;
@@ -173,13 +172,24 @@ body{
     border-radius: 10px;
     width: 80%;
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 0.1fr 4fr 1fr;
     background-color: $dark;
     color: $txt;
-    padding-left: 10%;
+    padding-left: 1%;
+    align-items: center;
     font-size: 1rem;
+    gap: 4px;
+    button{
+        visibility: hidden;
+        position: relative;
+        top: 25%;
+        transition: 0.2s;
+    }
 
     &:hover{
+        button{
+            visibility: visible;
+        }
         background-color: #4c4c4c;
     }
 }

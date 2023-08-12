@@ -1,6 +1,6 @@
 // TODO make the todo's event
 import { storingTasksInLocalStorage, storingProjectsInLocalStorage } from './storage';
-import {selected} from './index';
+import {selected, completed} from './index';
 const interfaceUI = document.querySelector('.interface');
 const makingTodo = document.querySelector('.makingTodo');
 const taskForm = document.querySelector('.taskForm');
@@ -63,9 +63,13 @@ newTaskDiv with broder color
 creates the div and then appends it to the parent element
 */
 const makeNewTaskUI = (task, date, priority)=>{
+    const completedBtn = document.createElement('button');
+    completedBtn.innerText = 'o';
+    completedBtn.classList.add('completedBtn');
+
     const newDiv = document.createElement('div');
     newDiv.classList.add('newDiv');
-
+    
     const taskPara = document.createElement('p');
     taskPara.innerText = task.value;
     taskPara.classList.add('taskPara');
@@ -91,12 +95,18 @@ const makeNewTaskUI = (task, date, priority)=>{
         newDiv.style.borderTopColor = "#59CE8F"; 
     }
     storingTasksInLocalStorage(task.value, date.value, priority.value, selected)
+    newDiv.appendChild(completedBtn);
     newDiv.appendChild(taskPara);
     newDiv.appendChild(datePara);
     makingTodo.append(newDiv);
+    completed()
 }
 
 const makeNewTaskUIWithoutAddingData = (task, date, priority)=>{
+    const completedBtn = document.createElement('button');
+    completedBtn.innerText = 'o';
+    completedBtn.classList.add('completedBtn');
+
     const newDiv = document.createElement('div');
     newDiv.classList.add('newDiv');
 
@@ -124,9 +134,11 @@ const makeNewTaskUIWithoutAddingData = (task, date, priority)=>{
         newDiv.style.borderTop = "4px solid"
         newDiv.style.borderTopColor = "#59CE8F"; 
     }
+    newDiv.appendChild(completedBtn);
     newDiv.appendChild(taskPara);
     newDiv.appendChild(datePara);
     makingTodo.append(newDiv);
+    completed()
 }
 
 // DOES calls the UI function and makes the task div with data

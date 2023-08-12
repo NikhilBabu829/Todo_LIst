@@ -94,8 +94,19 @@ function deleteAproject(projectName){
     localStorage.setItem("data", JSON.stringify(getDataFromLocalStorage));
 }
 
-function removeTaskFromStorage(ele){
-    console.log(ele)
+function removeTaskFromStorage(parentEle){
+    parentEle.remove()
+    const localStorageToBeRemoved = JSON.parse(localStorage.getItem("data"));
+    for(let i = 0; i<localStorageToBeRemoved.project.length; i++){
+        for(let j = 0; j < localStorageToBeRemoved.project[i].tasks.length;j++){
+            if(parentEle.childNodes[1].innerText == localStorageToBeRemoved.project[i].tasks[j]){
+                delete localStorageToBeRemoved.project[i].tasks.splice(j,1);
+                delete localStorageToBeRemoved.project[i].date.splice(j,1);
+                delete localStorageToBeRemoved.project[i].priority.splice(j,1);
+            }
+        }
+    }
+    localStorage.setItem("data", JSON.stringify(localStorageToBeRemoved));
 }
 
 export {storingTasksInLocalStorage, storingProjectsInLocalStorage, retreivingDataFromLocalStorage, deleteAproject, removeTaskFromStorage}
